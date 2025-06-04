@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoutes = require('./routes/authRoutes');
+
+
 require('dotenv').config();
 
 const app = express();
@@ -10,9 +13,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+
 // Routes
 const recipeRoutes = require('./routes/recipeRoutes'); // 🔹 Import the recipe routes
 app.use('/api/recipes', recipeRoutes); // 🔹 Use the recipe routes
+app.use('/api/auth', authRoutes);
 
 // Test route
 app.get('/', (req, res) => {
